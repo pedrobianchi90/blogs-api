@@ -1,37 +1,35 @@
-/**
- * 
- * @param {import('sequelize').sequelize} sequelize 
- * @param {import('sequelize').DataTypes} DataTypes 
- */
-
-module.exports = (sequelize, DataTypes) => {
-  const model = sequelize.define('Users', {
+const User = (sequelize, DataTypes) => {
+  const User = sequelize.define("User", {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     displayName: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     email: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       unique: true,
     },
     password: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     image: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     createdAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     updatedAt: {
       allowNull: false,
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     }
-  })
+  });
+
+  return User;
 };
+
+module.exports = User;
