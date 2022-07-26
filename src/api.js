@@ -1,5 +1,4 @@
 const express = require('express');
-// const loginRoute = require('./Routes/loginRoute');
 const authRoute = require('./Routes/authRoute');
 const errorMiddleware = require('./Middlewares/errorMiddleware');
 

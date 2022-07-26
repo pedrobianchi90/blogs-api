@@ -8,4 +8,5 @@ const errorMiddleware = ({ name, message }, _req, res, _next) => {
     if (!status) return res.sendStatus(500);
     res(status).json({ message });
 };
+
 module.exports = errorMiddleware;

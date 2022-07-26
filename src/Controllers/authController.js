@@ -1,10 +1,17 @@
 const authService = require('../Services/authService');
+const models = require('../database/models');
 
 const authController = {
-    /** @type {import('express').Request.Handler} */
     async login(req, res) {
-      const data = await authService.validateBodyLogin(req.body);
-      const user = await authService.getByEmail(data.email);
+      const { email, password } = req.body;
+      const data = await authService.validadeBodyLogin({ email, password });
+      if (data.message) {
+        return res.status(data.code).json(data.message);
+      }
+      const user = await models.User.findOne({ where: { email } });
+    if (!user || user.password !== password) {
+      res.status(400).json({ message: 'Invalid fields' });
+    }
       const token = await authService.createToken(user);
 
       return res.status(200).json({ token });

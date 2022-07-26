@@ -5,4 +5,4 @@ const authRoute = Router();
 
 authRoute.post('/', authControler.login);
 
-module.exports = authRoute; 
+module.exports = authRoute;
