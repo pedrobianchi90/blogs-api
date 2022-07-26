@@ -15,6 +15,13 @@ const userControler = {
     
     return res.status(201).json({ token });
   },
+  async getUser(_req, res) {
+    const users = await userService.getUser();
+    return res.status(200).json(users);
+  },
+  async getUserById(_req, res) {
+    return res.status(200).json;
+  },
 };
 
 module.exports = userControler; 

@@ -25,6 +25,25 @@ const userService = {
     const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword;
   },
+  async getUser() {
+    const users = await models.User.findAll({
+      raw: true,
+      atributes: { exclude: ['password'] },
+    });
+    if (!users) {
+      return { code: 401, message: { message: 'Users not found' } };
+    }
+    return users;
+  },
+  async getUserById(id) {
+    const user = await models.User.findByPk(id, {
+      attributes: { exclude: ['password'] },
+    });
+    if (!user) {
+      return { code: 404, message: { message: 'User does not exist' } };
+    }
+    return user;
+  },
 };
 
 module.exports = userService;
