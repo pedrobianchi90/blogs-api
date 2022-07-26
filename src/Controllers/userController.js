@@ -12,6 +12,7 @@ const userControler = {
       return res.status(user.code).json(user.message);
     }
     const token = await authService.createToken(user);
+    
     return res.status(201).json({ token });
   },
 };
