@@ -1,10 +1,21 @@
 require('dotenv').config();
 const Joi = require('joi');
 const jwt = require('jsonwebtoken');
+const throwUnauthorizedError = require('./utils');
 
 const secret = process.env.JWT_SECRET || 'secret';
 
 const authService = {
+  async validateAuthorization(unknown) {
+    const schema = Joi.string().required();
+    try {
+      const result = await schema.validateAsync(unknown);
+      const [, token] = result.split(' ');
+      return token;
+    } catch (error) {
+      throwUnauthorizedError();
+    }
+  },
   async validadeBodyLogin(unknown) {
     const schema = Joi.object({
       email: Joi.string().required().email(),
@@ -20,9 +31,13 @@ const authService = {
     const token = jwt.sign({ data: user }, secret);
     return token;
   },
-  async verifyToken(token) {
-    const { data } = jwt.decode(token, secret);
-    return data;
+  async readToken(token) {
+    try {
+      const { data } = jwt.verify(token, secret);
+      return data;
+    } catch (error) {
+      throwUnauthorizedError();
+    }
   },
 };
 
