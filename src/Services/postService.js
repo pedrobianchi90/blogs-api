@@ -14,21 +14,20 @@ const postService = {
     return value;
   },
   async getPosts() {
-    const posts = await models.post.findAll({
-      attributes: { exclude: ['UserId'] },
-      include: [{
-        model: models.User,
+    const posts = await models.BlogPost.findAll({
+      include: [{ 
+      model: models.User,
         as: 'user',
-        attributes: { exclude: ['password'] },
+        attributes: { exclude: 'password' },
       },
       {
         model: models.Category,
         as: 'categories',
         through: { attributes: { exclude: ['postId', 'categoryId'] } },
-      }],
+      }], 
     });
-    return posts;
-  },
+    return (posts);
+},
 };
 
 module.exports = postService;
