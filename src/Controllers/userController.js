@@ -10,8 +10,8 @@ const userControler = {
     const token = await authService.createToken(user);
     return res.status(201).json({ token });
   },
-  async getUser(_req, res) {
-    const users = await userService.getUser();
+  async getUsers(_req, res) {
+    const users = await userService.getUsers();
     return res.status(200).json(users);
   },
   async getUserById(req, res) {

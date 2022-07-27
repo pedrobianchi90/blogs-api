@@ -25,13 +25,12 @@ const userService = {
     const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword;
   },
-  async getUser() {
-    const users = await models.User.findAll({
+  async getUsers() {
+    const user = await models.User.findAll({
       raw: true,
-      atributes: { exclude: ['password'] },
+      attributes: { exclude: ['password'] },
     });
-    if (!users) { return { code: 401, message: { message: 'Users not found' } }; }
-    return users;
+    return user;
   },
   
   async getUserById(id) {

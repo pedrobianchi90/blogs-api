@@ -4,7 +4,7 @@ const tokenMiddleware = require('../Middlewares/tokenMiddleware');
 
 const userRoute = Router();
 
-userRoute.get('/', tokenMiddleware, userController.getUser);
+userRoute.get('/', tokenMiddleware, userController.getUsers);
 userRoute.get('/:id', tokenMiddleware, userController.getUserById);
 userRoute.post('/', userController.addUser);
 
