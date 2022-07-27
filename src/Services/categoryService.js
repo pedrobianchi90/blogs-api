@@ -23,6 +23,10 @@ const categoryService = {
     const categories = await models.Category.findAll({ raw: true });
     return categories;
   },
+  async getCategoryId(id) {
+    const categoryId = await models.Category.findByPk(id);
+    return categoryId;
+  },
 };
 
 module.exports = categoryService;

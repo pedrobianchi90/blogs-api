@@ -16,11 +16,11 @@ const userService = {
     return value;
   },
   async addUser({ displayName, email, password, image }) {
-    const registeredUsert = await models.User.findOne({
+    const registeredUser = await models.User.findOne({
       where: { email },
       raw: true,
     });
-    if (registeredUsert) return { code: 409, message: { message: 'User already registered' } };
+    if (registeredUser) return { code: 409, message: { message: 'User already registered' } };
     const user = await models.User.create({ displayName, email, password, image }, { raw: true });
     const { password: _, ...userWithoutPassword } = user;
     return userWithoutPassword;
