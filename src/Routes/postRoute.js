@@ -6,6 +6,6 @@ const postRoute = Router();
 
 // postRoute.put('/:id', tokenMiddleware, postController.updatePost);
 postRoute.get('/', tokenMiddleware, postController.getPosts);
-// postRoute.get('/:id', tokenMiddleware, postController.getPostId);
+postRoute.get('/:id', tokenMiddleware, postController.getPostById);
 
 module.exports = postRoute;

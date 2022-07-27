@@ -28,6 +28,18 @@ const postService = {
     });
     return (posts);
 },
+async getPostById(id) {
+  const post = await models.BlogPost.findByPk(id, {
+    include: [
+      { model: models.User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: models.Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+  if (!post) {
+    return { code: 404, message: { message: 'Post does not exist' } };
+  } 
+  return post;
+},
 };
 
 module.exports = postService;
