@@ -30,19 +30,15 @@ const userService = {
       raw: true,
       atributes: { exclude: ['password'] },
     });
-    if (!users) {
-      return { code: 401, message: { message: 'Users not found' } };
-    }
+    if (!users) { return { code: 401, message: { message: 'Users not found' } }; }
     return users;
   },
+  
   async getUserById(id) {
-    const user = await models.User.findByPk(id, {
-      attributes: { exclude: ['password'] },
-    });
-    if (!user) {
-      return { code: 404, message: { message: 'User does not exist' } };
-    }
-    return user;
+    const user = await models.User.findOne({ where: { id }, raw: true });
+    if (!user) return { code: 404, message: { message: 'User does not exist' } };
+    const { password: _, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   },
 };
 
