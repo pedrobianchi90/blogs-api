@@ -8,25 +8,32 @@ const BlogPost = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER
     },
     name: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     title: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     content: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     userId: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       foreignKey: true,
     },
     published: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     updated: {
+      allowNull: false,
       type: DataTypes.STRING
     },
     name: {
+      allowNull: false,
       type: DataTypes.STRING
     },
   }, { timestamps: false });
