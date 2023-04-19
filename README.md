@@ -29,3 +29,10 @@ The main goal of this project is to provide a complete and efficient platform fo
   * ```npm install```
 4. Docker:
   * To start the docker-compose, you must use the command `docker-compose up -d` inside the project's root folder.
+  <br>
+  
+## To Do List:
+* Endpoint POST `/post`
+* Endpoint GET `post/:id`
+* Endpoint PUT `/post/:id`
+* Endpoint DELETE `post/:id`
