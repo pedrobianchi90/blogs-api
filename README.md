@@ -27,5 +27,5 @@ The main goal of this project is to provide a complete and efficient platform fo
   * ```cd blogs-api```
 3. Install the dependencies:
   * ```npm install```
-4. Start the project:
-  * ```npm start```
+4. Docker:
+  * To start the docker-compose, you must use the command `docker-compose up -d` inside the project's root folder.
